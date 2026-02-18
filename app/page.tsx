@@ -3,7 +3,9 @@ import Hero from "./sections/Hero";
 import AboutPage from "./sections/About";
 import WhyChooseUs from "./sections/WhyChooseUS";
 import ContactPage from "./sections/ContactSection";
-import GalleryPage from "./gallery/page";
+import CuttingPage from "./sections/Cutting";
+import PrintPage from "./flexprinting/page";
+import LetterPage from "./letter/page";
 
 
 export const metadata: Metadata = {
@@ -35,12 +37,16 @@ export default function HomePage() {
 
       {/* About */}
       <AboutPage />
+      <PrintPage />
+      <LetterPage />
+
+      {/* Cutting Services */}
+      <CuttingPage />
 
       {/* Services */}
       {/* <Services /> */}
 
-      {/* Portfolio / Gallery */}
-      <GalleryPage />
+    
 
       {/* Why Choose Us */}
       <WhyChooseUs />

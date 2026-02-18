@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 
 
@@ -50,6 +51,9 @@ export default function RootLayout({
 
         {/* Footer */}
         <Footer />
+
+        {/* Floating WhatsApp Button */}
+        <FloatingWhatsApp />
 
       </body>
     </html>
