@@ -6,6 +6,8 @@ import ContactPage from "./sections/ContactSection";
 import CuttingPage from "./sections/Cutting";
 import PrintPage from "./flexprinting/page";
 import LetterPage from "./letter/page";
+import OurWorkPage from "./ourwork/page";
+import OurClients from "./sections/OurClient";
 
 
 export const metadata: Metadata = {
@@ -42,6 +44,8 @@ export default function HomePage() {
 
       {/* Cutting Services */}
       <CuttingPage />
+      <OurWorkPage />
+      <OurClients />
 
       {/* Services */}
       {/* <Services /> */}

@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function PrintSection() {
+  const router = useRouter();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -151,9 +154,23 @@ export default function PrintSection() {
                     {service.description}
                   </p>
 
+                  {/* View More Button - Luxury */}
+                  <motion.button
+                    onClick={() => router.push(`/services/${service.name.toLowerCase().replace(/\s+/g, '-')}`)}
+                    whileHover={{ scale: 1.08, y: -4 }}
+                    whileTap={{ scale: 0.96 }}
+                    className="mt-4 mb-3 px-6 py-3 text-sm font-bold uppercase tracking-widest bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 text-white rounded-xl hover:shadow-2xl shadow-lg transition-all duration-300 w-full group-hover:from-blue-700 group-hover:via-blue-600 group-hover:to-blue-800 relative overflow-hidden cursor-pointer hover:cursor-pointer"
+                  >
+                    <span className="absolute inset-0 bg-white/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <span className="relative flex items-center justify-center gap-2">
+                      View More Details
+                      <span className="text-lg">✨</span>
+                    </span>
+                  </motion.button>
+
                   {/* Bottom accent bar */}
                   <motion.div
-                    className={`mt-4 h-1 w-0 bg-gradient-to-r ${service.color} via-blue-600 to-transparent group-hover:w-full transition-all duration-500 rounded-full`}
+                    className={`h-1 w-0 bg-gradient-to-r ${service.color} via-blue-600 to-transparent group-hover:w-full transition-all duration-500 rounded-full`}
                   />
                 </div>
               </div>
