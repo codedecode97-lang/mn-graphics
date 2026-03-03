@@ -10,7 +10,7 @@ export default function FloatingWhatsApp() {
       scale: 1,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 260,
         damping: 20,
         delay: 0.5,
@@ -24,7 +24,6 @@ export default function FloatingWhatsApp() {
       transition: {
         duration: 2,
         repeat: Infinity,
-        ease: "easeInOut",
       },
     },
   };
@@ -70,7 +69,6 @@ export default function FloatingWhatsApp() {
             transition={{
               duration: 3,
               repeat: Infinity,
-              ease: "easeInOut",
             }}
           />
 
