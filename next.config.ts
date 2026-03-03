@@ -32,8 +32,34 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "anuprerna-bloomscorp.s3.ap-south-1.amazonaws.com" },
       { protocol: "https", hostname: "content.jdmagicbox.com" },
       { protocol: "https", hostname: "imprintbd.com" },
+      { protocol: "https", hostname: "londonmetalstore.co.uk" },
+      { protocol: "https", hostname: "foun10.in" },
+      { protocol: "https", hostname: "www.makeneon.com" },
+      { protocol: "https", hostname: "m.media-amazon.com" },
+      { protocol: "https", hostname: "www.shutterstock.com" },
+      { protocol: "https", hostname: "content.jdmagicbox.com" },
+      { protocol: "https", hostname: "d91ztqmtx7u1k.cloudfront.net" },
+      { protocol: "https", hostname: "cdn.shopify.com" },
+      { protocol: "https", hostname: "encrypted-tbn0.gstatic.com" },
+      { protocol: "https", hostname: "www.e-arc.in" },
+      { protocol: "https", hostname: "www.crealityfalcon.com" },
+      { protocol: "https", hostname: "archidplydecor.com" },
+      { protocol: "https", hostname: "images.jdmagicbox.com" },
+      { protocol: "https", hostname: "cpimg.tistatic.com" },
+      { protocol: "https", hostname: "www.crealityfalcon.com" },
+      { protocol: "https", hostname: "blog-aludecor.s3.ap-south-1.amazonaws.com" },
+      { protocol: "https", hostname: "image.made-in-china.com" },
+      { protocol: "https", hostname: "alstoneindia.com" },
+      { protocol: "https", hostname: "cdn.prod.website-files.com" },
+      { protocol: "https", hostname: "thumbs.dreamstime.com" },
+    
+
+
+
     ],
   },
+  turbopack: {
+    root: "E:\\mn-graphic-signage\\mn-graphics",
+  },
 };
-
 export default nextConfig;

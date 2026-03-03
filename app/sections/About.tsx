@@ -1,228 +1,479 @@
-
-
-
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
-export default function AboutSection() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.1 },
-    },
-  };
+const features = [
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    title: "Premium Quality",
+    desc: "High-grade materials with flawless finishing on every project.",
+    glow: "rgba(250,204,21,0.18)",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    title: "Timely Delivery",
+    desc: "Fast, reliable completion — your deadlines are our priority.",
+    glow: "rgba(59,130,246,0.16)",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75" />
+      </svg>
+    ),
+    title: "Affordable Pricing",
+    desc: "Professional branding solutions crafted within your budget.",
+    glow: "rgba(52,211,153,0.14)",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+      </svg>
+    ),
+    title: "Custom Designs",
+    desc: "Unique, tailored branding that reflects your business identity.",
+    glow: "rgba(236,72,153,0.14)",
+  },
+];
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
+const fadeUp = {
+  hidden: { opacity: 0, y: 36 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.1, duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
 
-  const imageVariants = {
-    hidden: { opacity: 0, x: -30 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
-  };
+export default function AboutPage() {
+  const imageRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: imageRef, offset: ["start end", "end start"] });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["4%", "-4%"]);
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-900/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-900/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500&display=swap');
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        {/* Centered Header Section */}
-        <motion.div
-          className="text-center mb-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-        >
-          <motion.div variants={itemVariants}>
-            <div className="inline-flex items-center gap-2 bg-blue-100 px-4 py-2 rounded-full mb-4">
-              <div className="w-2 h-2 bg-blue-900 rounded-full" />
-              <p className="text-blue-900 font-bold tracking-widest text-sm uppercase">
-                About M.N. Graphics
-              </p>
-            </div>
-          </motion.div>
+        @keyframes shimmer {
+          0%   { background-position: -200% center; }
+          100% { background-position:  200% center; }
+        }
+        @keyframes floatBadge {
+          0%, 100% { transform: translateY(0px); }
+          50%       { transform: translateY(-6px); }
+        }
+        @keyframes rotateSlow {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes pulseGlow {
+          0%, 100% { opacity: 0.35; }
+          50%       { opacity: 0.7; }
+        }
 
-          <motion.div variants={itemVariants}>
-            <h2 className="text-4xl lg:text-5xl font-black text-blue-900 leading-tight font-poppins">
-              Premium Vinyl Cutting
-              <br />
-              & Signage Solutions
-            </h2>
-          </motion.div>
-        </motion.div>
+        .about-heading {
+          font-family: 'Cormorant Garamond', serif;
+          line-height: 1.12;
+        }
+        .about-body { font-family: 'Inter', sans-serif; }
+        .card-label  { font-family: 'Rajdhani', sans-serif; letter-spacing: 0.06em; }
 
-        {/* Content Grid */}
-        <motion.div
-          className="grid lg:grid-cols-2 gap-16 items-center"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {/* Left Image */}
-          <motion.div variants={imageVariants} className="relative group">
-            <div className="absolute -inset-4 bg-blue-900 rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition duration-500" />
-            <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl group-hover:shadow-2xl group-hover:shadow-blue-500/30 transition-all duration-500">
-              <Image
-                src="/about.jpeg"
-                alt="Printing and Vinyl Cutting Services in Kolkata"
-                width={600}
-                height={500}
-                className="w-full h-full object-cover rounded-3xl"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/10 via-transparent to-transparent rounded-3xl" />
-            </div>
-          </motion.div>
+        .gradient-name {
+          background: linear-gradient(90deg, #facc15 0%, #fde68a 40%, #facc15 70%, #b45309 100%);
+          background-size: 250% auto;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: shimmer 5s linear infinite;
+        }
 
-          {/* Right Content */}
-          <motion.div variants={containerVariants} className="space-y-6">
-            {/* Description */}
-            <motion.div variants={itemVariants} className="space-y-4">
-              <p className="text-lg text-gray-700 leading-relaxed font-medium">
-                <span className="font-bold text-blue-900">M N Graphic Vinyl Cutting</span> is a trusted vinyl cutting and signage service provider in Kolkata. We are located at <span className="font-semibold text-blue-600">45, Bepin Behari Ganguly Street, Lal Bazar, Kolkata – 700012</span>.
-              </p>
+        .feature-card {
+          position: relative;
+          background: rgba(255,255,255,0.025);
+          backdrop-filter: blur(18px) saturate(160%);
+          -webkit-backdrop-filter: blur(18px) saturate(160%);
+          border: 1px solid rgba(255,255,255,0.06);
+          transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
+                      border-color 0.35s ease,
+                      box-shadow 0.35s ease;
+        }
+        .feature-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(250,204,21,0.22);
+        }
 
-              <p className="text-gray-700 leading-relaxed">
-                We provide high-quality vinyl cutting for shop name boards, glass branding, wall graphics, vehicle stickers, and custom designs. Our work is <span className="font-semibold text-blue-900">clean, precise, and long-lasting</span>.
-              </p>
+        .badge-float {
+          animation: floatBadge 3.5s ease-in-out infinite;
+        }
 
-              <p className="text-gray-700 leading-relaxed">
-                We focus on <span className="font-semibold text-blue-900">quality, timely delivery, and customer satisfaction</span>. Whether it is a small shop or a big business, we provide professional and affordable branding solutions.
-              </p>
+        .ring-spin {
+          animation: rotateSlow 14s linear infinite;
+        }
 
-              <p className="text-gray-700 leading-relaxed font-medium text-lg">
-                Our aim is simple — <span className="font-bold text-blue-900">to help your business look better and stand out</span>.
-              </p>
-            </motion.div>
+        .blob {
+          animation: pulseGlow 5s ease-in-out infinite;
+        }
 
-          </motion.div>
-        </motion.div>
+        .image-frame {
+          position: relative;
+          border-radius: 24px;
+          overflow: hidden;
+        }
+        .image-frame::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 24px;
+          padding: 1.5px;
+          background: linear-gradient(135deg, rgba(250,204,21,0.5) 0%, rgba(250,204,21,0.05) 50%, rgba(236,72,153,0.25) 100%);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          z-index: 2;
+          pointer-events: none;
+        }
 
-            {/* Key Features Section */}
-            <motion.div 
-              className="mt-20 -mx-6 lg:-mx-8 px-6 lg:px-8 py-16 bg-gradient-to-r from-blue-900/5 via-blue-900/3 to-blue-900/5 rounded-3xl"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={containerVariants}
+        .divider-line {
+          background: linear-gradient(90deg, transparent, rgba(250,204,21,0.4), rgba(236,72,153,0.2), transparent);
+          height: 1px;
+        }
+      `}</style>
+
+      <section
+        className="relative overflow-hidden py-14 px-6"
+        style={{ background: "linear-gradient(160deg, #080810 0%, #0c0c14 50%, #090909 100%)" }}
+      >
+        {/* ── BACKGROUND BLOBS ── */}
+        <div
+          className="blob absolute top-[-8%] left-[-10%] w-[520px] h-[420px] rounded-full pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse, rgba(250,204,21,0.06) 0%, transparent 70%)",
+            filter: "blur(60px)",
+          }}
+        />
+        <div
+          className="blob absolute bottom-[-10%] right-[-8%] w-[480px] h-[400px] rounded-full pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse, rgba(236,72,153,0.05) 0%, transparent 70%)",
+            filter: "blur(60px)",
+            animationDelay: "2.5s",
+          }}
+        />
+        <div
+          className="blob absolute top-[40%] left-[45%] w-[300px] h-[300px] rounded-full pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse, rgba(59,130,246,0.04) 0%, transparent 70%)",
+            filter: "blur(50px)",
+            animationDelay: "1.2s",
+          }}
+        />
+
+        {/* ── GRID TEXTURE OVERLAY ── */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.025]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(250,204,21,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(250,204,21,0.5) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+        />
+
+        <div className="relative z-10 max-w-7xl mx-auto">
+
+          {/* ── EYEBROW ── */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={0}
+            className="flex items-center gap-3 mb-4"
+          >
+            <span
+              className="inline-flex items-center gap-2 text-[0.7rem] font-700 uppercase tracking-[0.28em] px-4 py-1.5 rounded-full"
+              style={{
+                fontFamily: "'Rajdhani', sans-serif",
+                fontWeight: 700,
+                border: "1px solid rgba(250,204,21,0.2)",
+                background: "rgba(250,204,21,0.05)",
+                color: "rgba(250,204,21,0.75)",
+                letterSpacing: "0.28em",
+              }}
             >
-              <motion.div className="mb-8 text-center" variants={itemVariants}>
-                <p className="text-blue-900 font-bold tracking-widest text-sm uppercase">Our Specialties</p>
-                <h3 className="text-2xl lg:text-3xl font-black text-blue-900 font-poppins mt-2">Why We Excel</h3>
-              </motion.div>
-              
-              <motion.div className="grid grid-cols-2 lg:grid-cols-4 gap-5" variants={containerVariants}>
-                {[
-                  { text: "Clean & Precise Vinyl Cutting", icon: "✂️" },
-                  { text: "Long-Lasting Materials", icon: "⭐" },
-                  { text: "Fast & Reliable Delivery", icon: "⚡" },
-                  { text: "Affordable Premium Solutions", icon: "💎" }
-                ].map((feature, idx) => (
-                  <motion.div 
-                    key={idx} 
-                    className="group relative overflow-hidden"
-                    variants={itemVariants}
-                    whileHover={{ y: -10, scale: 1.02 }}
-                  >
-                    <div className="relative p-6 bg-white rounded-2xl shadow-lg border border-blue-100 group-hover:border-blue-400 group-hover:shadow-2xl transition-all duration-300 overflow-hidden h-full">
-                      {/* Premium gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/0 via-transparent to-blue-900/0 group-hover:from-blue-900/8 group-hover:to-blue-900/5 transition-all duration-300 rounded-2xl" />
-                      
-                      {/* Icon */}
-                      <motion.div
-                        className="relative text-4xl mb-4 group-hover:scale-125 transition-transform duration-300"
-                        whileHover={{ rotate: 15, scale: 1.3 }}
-                      >
-                        {feature.icon}
-                      </motion.div>
-                      
-                      {/* Text */}
-                      <p className="relative text-sm font-bold text-gray-800 group-hover:text-blue-900 transition-colors duration-300 leading-snug">
-                        {feature.text}
-                      </p>
+              <span
+                className="w-1.5 h-1.5 rounded-full"
+                style={{ background: "#facc15", boxShadow: "0 0 8px #facc15" }}
+              />
+              Est. 2013 · Kolkata
+            </span>
+          </motion.div>
 
-                      {/* Bottom accent line */}
-                      <motion.div
-                        className="absolute bottom-0 left-0 h-1.5 w-0 bg-gradient-to-r from-blue-900 via-blue-600 to-transparent group-hover:w-full transition-all duration-500 rounded-full"
+          <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
+
+            {/* ══ LEFT CONTENT ══ */}
+            <div>
+              {/* Heading */}
+              <motion.h2
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={1}
+                className="about-heading text-[2.6rem] md:text-[3.4rem] xl:text-[3.8rem] font-bold text-white mb-2 leading-[1.1]"
+              >
+                About
+              </motion.h2>
+              <motion.h2
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={1.5}
+                className="about-heading text-[2.6rem] md:text-[3.4rem] xl:text-[3.8rem] font-bold mb-8"
+              >
+                <span className="gradient-name">M N Graphic</span>
+              </motion.h2>
+
+              <div className="divider-line mb-8 w-24" />
+
+              <motion.p
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={2}
+                className="about-body text-gray-400 mb-5 leading-[1.85] text-[1rem]"
+              >
+                M N Graphic Vinyl Cutting is a trusted vinyl cutting and signage
+                service provider in Kolkata. Located at{" "}
+                <span style={{ color: "rgba(250,204,21,0.7)" }}>
+                  45, Bepin Behari Ganguly Street, Lal Bazar, Kolkata – 700012
+                </span>
+                , we deliver professional and affordable branding solutions for
+                businesses of all sizes.
+              </motion.p>
+
+              <motion.p
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={2.5}
+                className="about-body text-gray-400 mb-10 leading-[1.85] text-[1rem]"
+              >
+                We specialize in shop name boards, glass branding, wall graphics,
+                vehicle stickers, acrylic letters, neon signs, and custom vinyl
+                designs — clean, precise, long-lasting, and delivered on time.
+              </motion.p>
+
+              {/* Feature Cards */}
+              <div className="grid grid-cols-2 gap-4">
+                {features.map((f, i) => (
+                  <motion.div
+                    key={f.title}
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    custom={3 + i * 0.15}
+                  >
+                    <div
+                      className="feature-card rounded-xl p-5 h-full cursor-default"
+                      style={{ "--glow": f.glow } as React.CSSProperties}
+                    >
+                      {/* Hover glow */}
+                      <div
+                        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+                        style={{
+                          background: `radial-gradient(ellipse at 50% 0%, ${f.glow} 0%, transparent 70%)`,
+                        }}
                       />
-                      
-                      {/* Top accent line */}
-                      <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-blue-300 to-transparent" />
+
+                      <div
+                        className="w-10 h-10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0"
+                        style={{
+                          background: "rgba(250,204,21,0.06)",
+                          border: "1px solid rgba(250,204,21,0.14)",
+                          color: "#facc15",
+                          boxShadow: "0 0 12px rgba(250,204,21,0.06)",
+                        }}
+                      >
+                        {f.icon}
+                      </div>
+
+                      <h4
+                        className="card-label text-[0.88rem] font-700 mb-1.5"
+                        style={{ color: "#facc15", fontWeight: 700 }}
+                      >
+                        {f.title}
+                      </h4>
+                      <p
+                        className="about-body text-[0.78rem] leading-[1.65]"
+                        style={{ color: "rgba(156,163,175,0.85)" }}
+                      >
+                        {f.desc}
+                      </p>
                     </div>
                   </motion.div>
                 ))}
+              </div>
+            </div>
+
+            {/* ══ RIGHT IMAGE ══ */}
+            <motion.div
+              ref={imageRef}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={1}
+              className="relative flex justify-center"
+            >
+              {/* Decorative ring */}
+              <div
+                className="ring-spin absolute -top-8 -right-8 w-56 h-56 rounded-full pointer-events-none opacity-20"
+                style={{
+                  border: "1px dashed rgba(250,204,21,0.5)",
+                }}
+              />
+
+              {/* Glow behind image */}
+              <div
+                className="absolute inset-[-8%] rounded-[32px] pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 50% 50%, rgba(250,204,21,0.08) 0%, transparent 70%)",
+                  filter: "blur(30px)",
+                }}
+              />
+
+              {/* Image */}
+              <motion.div style={{ y: imageY }} className="w-full image-frame">
+                <Image
+                  src="/about.jpeg"
+                  alt="Printing and Vinyl Cutting Services in Kolkata"
+                  width={600}
+                  height={500}
+                  className="w-full h-full object-cover"
+                  style={{ borderRadius: "24px", display: "block" }}
+                />
+
+                {/* Dark vignette overlay */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    borderRadius: "24px",
+                    background:
+                      "linear-gradient(180deg, transparent 55%, rgba(8,8,16,0.55) 100%)",
+                  }}
+                />
               </motion.div>
-            </motion.div>
-        {/* Professional Stats Section */}
-        <motion.div
-          className="mt-20 -mx-6 lg:-mx-8 px-6 lg:px-8 py-20 bg-gradient-to-r from-blue-900/8 via-blue-900/5 to-blue-900/8 rounded-3xl border border-blue-200/50"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-        >
-          <motion.div className="mb-12 text-center" variants={itemVariants}>
-            <p className="text-blue-900 font-bold tracking-widest text-sm uppercase">Our Track Record</p>
-            <h3 className="text-2xl lg:text-3xl font-black text-blue-900 font-poppins mt-2">Trusted by Businesses</h3>
-          </motion.div>
-          
-          <motion.div
-            className="grid grid-cols-2 lg:grid-cols-4 gap-6"
-            variants={containerVariants}
-          >
-            {[
-              { number: "10+", label: "Years Experience", icon: "📅" },
-              { number: "100+", label: "Happy Clients", icon: "😊" },
-              { number: "Premium", label: "Quality Materials", icon: "⭐" },
-              { number: "Fast", label: "On-Time Delivery", icon: "⚡" },
-            ].map((stat, idx) => (
-              <motion.div
-                key={idx}
-                variants={itemVariants}
-                whileHover={{ y: -15, scale: 1.05, boxShadow: "0 40px 80px rgba(15, 23, 42, 0.2)" }}
-                className="group"
+
+              {/* ── EXPERIENCE BADGE ── */}
+              <div
+                className="badge-float absolute -bottom-5 -left-5 flex items-center gap-3 px-5 py-3.5 rounded-2xl select-none"
+                style={{
+                  background: "linear-gradient(135deg, #facc15 0%, #fbbf24 60%, #d97706 100%)",
+                  boxShadow:
+                    "0 8px 32px rgba(250,204,21,0.35), 0 2px 8px rgba(0,0,0,0.4)",
+                }}
               >
-                <div className="relative p-8 bg-gradient-to-br from-white via-blue-50/30 to-white rounded-3xl shadow-xl border border-blue-200 group-hover:border-blue-400 transition-all duration-300 overflow-hidden">
-                  {/* Premium gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/0 via-transparent to-blue-900/0 group-hover:from-blue-900/10 group-hover:to-blue-900/5 transition-all duration-300 rounded-3xl" />
-                  
-                  {/* Icon */}
-                  <motion.div
-                    className="relative text-6xl mb-5 group-hover:scale-125 transition-transform duration-300"
-                    whileHover={{ rotate: 12, scale: 1.3 }}
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                  style={{ background: "rgba(0,0,0,0.15)" }}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-5 h-5 text-black">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                  </svg>
+                </div>
+                <div>
+                  <div
+                    style={{
+                      fontFamily: "'Rajdhani', sans-serif",
+                      fontWeight: 800,
+                      fontSize: "1.3rem",
+                      color: "#0c0c0c",
+                      lineHeight: 1,
+                    }}
                   >
-                    {stat.icon}
-                  </motion.div>
+                    10+ Years
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 500,
+                      fontSize: "0.68rem",
+                      color: "rgba(0,0,0,0.65)",
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    of Experience
+                  </div>
+                </div>
+              </div>
 
-                  {/* Number */}
-                  <h3 className="relative text-5xl font-black text-blue-900 mb-2 font-poppins group-hover:text-blue-700 transition-colors duration-300">
-                    {stat.number}
-                  </h3>
-
-                  {/* Label */}
-                  <p className="relative text-gray-700 font-bold text-base group-hover:text-blue-900 transition-colors duration-300">{stat.label}</p>
-
-                  {/* Animated bottom border */}
-                  <motion.div
-                    className="absolute bottom-0 left-0 h-2 w-0 bg-gradient-to-r from-blue-900 via-blue-600 to-transparent group-hover:w-full transition-all duration-500 rounded-full"
-                  />
-
-                  {/* Top accent line */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent" />
+              {/* ── STATS PILL ── */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
+                className="absolute top-6 -right-4 flex items-center gap-3 px-4 py-3 rounded-xl"
+                style={{
+                  background: "rgba(12,12,20,0.88)",
+                  border: "1px solid rgba(250,204,21,0.15)",
+                  backdropFilter: "blur(20px)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
+                }}
+              >
+                <div
+                  className="w-2 h-2 rounded-full flex-shrink-0"
+                  style={{ background: "#4ade80", boxShadow: "0 0 8px #4ade80" }}
+                />
+                <div>
+                  <div
+                    style={{
+                      fontFamily: "'Rajdhani', sans-serif",
+                      fontWeight: 700,
+                      fontSize: "1.1rem",
+                      color: "#facc15",
+                      lineHeight: 1,
+                    }}
+                  >
+                    500+
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.65rem",
+                      color: "rgba(156,163,175,0.8)",
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Projects Done
+                  </div>
                 </div>
               </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
+
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

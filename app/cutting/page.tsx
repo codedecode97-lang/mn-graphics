@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function PrintPage() {
   return (
-    <main className=" bg-white">
+    <main className="pt-5 bg-white">
 
   
 

@@ -3,7 +3,7 @@ import AboutSection from "../sections/About";
 
 export default function AboutPage() {
   return (
-    <main className="pt-40">
+    <main className="pt-10">
       <AboutSection />
     </main>
   );
