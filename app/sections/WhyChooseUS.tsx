@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring, cubicBezier } from "framer-motion";
 import { ShieldCheck, Clock, Award, Users } from "lucide-react";
 import { useRef } from "react";
 
@@ -72,7 +72,7 @@ const containerVariants = {
 };
 const cardVariants = {
   hidden: { opacity: 0, y: 44 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: cubicBezier(0.22, 1, 0.36, 1) } },
 };
 
 export default function WhyChooseUs() {

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring, cubicBezier } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { useRef } from "react";
 
@@ -91,7 +91,7 @@ const containerVariants = {
 };
 const cardVariants = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: cubicBezier(0.22, 1, 0.36, 1) } },
 };
 
 export default function OurWork() {
@@ -356,7 +356,7 @@ export default function OurWork() {
                       <motion.div
                         className="w-full h-full"
                         whileHover={{ scale: 1.08 }}
-                        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.55, ease: cubicBezier(0.22, 1, 0.36, 1) }}
                       >
                         <Image
                           src={item.image}

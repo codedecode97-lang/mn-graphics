@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring, cubicBezier } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -115,7 +115,7 @@ const containerVariants = {
 };
 const cardVariants = {
   hidden: { opacity: 0, y: 44 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: cubicBezier(0.22, 1, 0.36, 1) } },
 };
 
 export default function CuttingSection() {
@@ -374,7 +374,7 @@ export default function CuttingSection() {
                       <motion.div
                         className="w-full h-full"
                         whileHover={{ scale: 1.09 }}
-                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.5, ease: cubicBezier(0.22, 1, 0.36, 1) }}
                       >
                         <Image
                           src={service.image}

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, cubicBezier } from "framer-motion";
 import logo from "@/app/assets/logo.png";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -204,7 +204,7 @@ export default function Navbar() {
       <motion.header
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.55, ease: cubicBezier(0.22, 1, 0.36, 1) }}
         className="fixed top-0 left-0 w-full z-50"
         style={{
   background: "linear-gradient(180deg, rgba(5,5,10,0.98) 0%, rgba(8,8,15,0.96) 100%)",
@@ -282,7 +282,7 @@ export default function Navbar() {
                       initial={{ opacity: 0, y: -8, scale: 0.96 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                      transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.22, ease: cubicBezier(0.22, 1, 0.36, 1) }}
                       className="gs-dropdown absolute top-full left-1/2 -translate-x-1/2 mt-3.5 w-52 rounded-xl overflow-hidden"
                     >
                       <div className="h-[1px]" style={{
@@ -381,7 +381,7 @@ export default function Navbar() {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.38, ease: cubicBezier(0.22, 1, 0.36, 1) }}
               className="gs-drawer fixed top-0 right-0 h-full w-[78vw] max-w-[300px] z-[60] flex flex-col md:hidden"
             >
               {/* Top neon accent */}

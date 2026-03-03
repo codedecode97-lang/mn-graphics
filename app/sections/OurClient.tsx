@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, useSpring, useInView } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring, useInView, cubicBezier } from "framer-motion";
 import { Star, CheckCircle2 } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 
@@ -93,7 +93,7 @@ const containerVariants = {
 };
 const cardVariants = {
   hidden: { opacity: 0, y: 44 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: cubicBezier(0.22, 1, 0.36, 1) } },
 };
 
 export default function OurClients() {
@@ -515,7 +515,7 @@ export default function OurClients() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.65, ease: cubicBezier(0.22, 1, 0.36, 1) }}
           >
             {/* Inner glow */}
             <div className="absolute inset-0 rounded-2xl pointer-events-none"

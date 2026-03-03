@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, cubicBezier } from "framer-motion";
 import { useRef } from "react";
 
 const features = [
@@ -52,7 +52,7 @@ const fadeUp = {
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: i * 0.1, duration: 0.65, ease: cubicBezier(0.22, 1, 0.36, 1) },
   }),
 };
 

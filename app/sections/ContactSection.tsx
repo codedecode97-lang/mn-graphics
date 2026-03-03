@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, cubicBezier } from "framer-motion";
 import { Phone, MapPin, Mail, Send } from "lucide-react";
 
 const containerVariants = {
@@ -9,7 +9,7 @@ const containerVariants = {
 };
 const fadeUp = {
   hidden: { opacity: 0, y: 36 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: cubicBezier(0.22, 1, 0.36, 1) } },
 };
 
 const contactInfo = [
@@ -421,7 +421,7 @@ export default function ContactSectionPages() {
               initial={{ opacity: 0, x: -32 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.65, ease: cubicBezier(0.22, 1, 0.36, 1) }}
             >
               <div className="cs-form-card rounded-2xl p-8">
                 {/* Inner ambient behind form */}
@@ -559,7 +559,7 @@ export default function ContactSectionPages() {
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+            transition={{ duration: 0.65, ease: cubicBezier(0.22, 1, 0.36, 1), delay: 0.15 }}
             whileHover={{ scale: 1.005 }}
           >
             <iframe

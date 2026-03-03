@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, cubicBezier } from "framer-motion";
 import { ArrowRight, ChevronDown, MapPin } from "lucide-react";
 import hero1 from "@/app/assets/cutting.png";
 import hero2 from "@/app/assets/ecosolvent.png";
@@ -54,13 +54,13 @@ const TICK = 50;
 ───────────────────────────────────────────── */
 const fadeUp = (delay = 0) => ({
   hidden:  { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0,  transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1], delay } },
-  exit:    { opacity: 0, y: -16, transition: { duration: 0.38, ease: "easeIn" } },
+  visible: { opacity: 1, y: 0,  transition: { duration: 0.72, ease: cubicBezier(0.22, 1, 0.36, 1), delay } },
+  exit:    { opacity: 0, y: -16, transition: { duration: 0.38 } },
 });
 
 const scaleIn = (delay = 0) => ({
   hidden:  { opacity: 0, scale: 0.91 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1], delay } },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.55, ease: cubicBezier(0.22, 1, 0.36, 1), delay } },
   exit:    { opacity: 0, scale: 0.97, transition: { duration: 0.28 } },
 });
 
@@ -306,7 +306,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
+            transition={{ duration: 1.5 }}
             className="absolute inset-0 z-0"
           >
             <div className="hero-img-motion">

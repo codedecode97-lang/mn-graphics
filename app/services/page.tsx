@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, cubicBezier } from "framer-motion";
 import { ArrowRight, Zap, Clock, Shield, Star } from "lucide-react";
 
 const fadeUp = (delay = 0) => ({
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: cubicBezier(0.22, 1, 0.36, 1), delay } },
 });
 
 const printServices = [

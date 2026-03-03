@@ -6,6 +6,7 @@ import {
   useSpring,
   useTransform,
   AnimatePresence,
+  cubicBezier,
 } from "framer-motion";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
@@ -31,7 +32,7 @@ const fadeUp = (delay = 0) => ({
   hidden: { opacity: 0, y: 36 },
   visible: {
     opacity: 1, y: 0,
-    transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1], delay },
+    transition: { duration: 0.72, ease: cubicBezier(0.22, 1, 0.36, 1), delay },
   },
 });
 
@@ -887,7 +888,7 @@ export default function ServiceDetailPage() {
           <motion.div
             initial={{ opacity: 0, y: -14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.55, ease: cubicBezier(0.22, 1, 0.36, 1) }}
             className="flex items-center justify-between mb-12 mt-12"
           >
             <button
